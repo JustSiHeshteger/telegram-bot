@@ -1,20 +1,25 @@
 package ru.zvrg.telegrambot.service.command;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.zvrg.telegrambot.service.command.impl.StartCommand;
+import ru.zvrg.telegrambot.service.command.impl.ValuteCommand;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
 import static ru.zvrg.telegrambot.utils.constants.Constants.START;
+import static ru.zvrg.telegrambot.utils.constants.Constants.VALUTE;
 
 @Service
-public class CommandExecutor {
+public class CommandFactory {
     private static final Map<String, DefaultCommand> commands = new HashMap<>();
 
-    static {
-        commands.put(START, new StartCommand());
+    @Autowired
+    public CommandFactory(StartCommand startCommand, ValuteCommand valuteCommand) {
+        commands.put(START, startCommand);
+        commands.put(VALUTE, valuteCommand);
     }
 
     public DefaultCommand getCommand(String commandName) {

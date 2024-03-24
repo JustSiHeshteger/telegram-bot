@@ -1,5 +1,6 @@
 package ru.zvrg.telegrambot.config;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
@@ -10,6 +11,7 @@ import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 import ru.zvrg.telegrambot.listener.TelegramBotListener;
 
 @Component
+@Slf4j
 public class Initializer {
 
     private final TelegramBotListener listener;
@@ -20,9 +22,9 @@ public class Initializer {
     }
 
     @EventListener({ContextRefreshedEvent.class})
-    public void init() throws TelegramApiException {
-
+    public void init() {
         try {
+            log.info("Начало создание бота {}", listener);
             TelegramBotsApi botsApi = new TelegramBotsApi(DefaultBotSession.class);
             botsApi.registerBot(listener);
         } catch (TelegramApiException e) {
