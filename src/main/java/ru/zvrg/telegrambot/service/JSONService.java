@@ -2,26 +2,27 @@ package ru.zvrg.telegrambot.service;
 
 import org.springframework.stereotype.Service;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.InputStream;
 import java.net.URL;
+import java.util.Scanner;
+import java.util.regex.Pattern;
+
 
 @Service
 public class JSONService {
-
-    public String getJSONFile(String link) throws IOException {
-        final URL url = new URL(link);
-        BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()));
-        StringBuilder jsonContent = new StringBuilder();
-
-        String line;
-        while ((line = reader.readLine()) != null) {
-            jsonContent.append(line);
+    public String readJSON (URL url) throws IOException {
+        Scanner scanner = new Scanner((InputStream) url.getContent());
+        String result = "";
+        while (scanner.hasNext()){
+            scanner.skip(Pattern.compile("\"PreviousDate\": "));
+            scanner.skip(Pattern.compile("\"PreviousURL\": "));
+            scanner.skip(Pattern.compile("\"Timestamp\": "));
+            result += scanner.nextLine();
         }
 
-        reader.close();
-
-        return jsonContent.toString();
+        return result;
     }
+
+
 }
