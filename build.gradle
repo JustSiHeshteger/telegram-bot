@@ -58,6 +58,7 @@ tasks.named('test') {
 
 checkstyle {
 	configFile = file("src/main/resources/checkstyle.xml")
+	showViolations = true
 }
 
 def getVersion() {
