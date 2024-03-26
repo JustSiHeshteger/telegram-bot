@@ -19,8 +19,8 @@ public class WebService {
     private final FileHandler fileHandler;
     private final Gson gson;
 
-    public JsonObject getJsonFileFromCbr(String link) throws IOException {
-        final URL url = new URL(link);
+    public JsonObject getJsonFileFromUrl(String jsonUrl, String path) throws IOException {
+        final URL url = new URL(jsonUrl);
         StringBuilder jsonContent = new StringBuilder();
 
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()))) {
@@ -33,7 +33,7 @@ public class WebService {
         }
 
         JsonObject jsonObject = gson.fromJson(jsonContent.toString(), JsonObject.class);
-        fileHandler.saveJsonToFile(jsonObject);
+        fileHandler.saveJsonToFile(jsonObject, path);
 
         return jsonObject;
     }

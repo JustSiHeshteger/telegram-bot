@@ -13,8 +13,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import static ru.zvrg.telegrambot.utils.constants.Constants.Paths.VALUTES_PATH;
-
 @Slf4j
 @Component
 @RequiredArgsConstructor
@@ -22,35 +20,24 @@ public final class FileHandler {
 
     private final Gson gson;
 
-    //FIXME изменить, чтобы в метод приходил путь из сервиса, так как метод можно переиспользовать
-    public void saveJsonToFile(JsonObject json) {
-        try (FileWriter writer = new FileWriter(VALUTES_PATH)) {
+    public void saveJsonToFile(JsonObject json, String path) {
+        try (FileWriter writer = new FileWriter(path)) {
             openOrCreateDirectory();
             writer.write(new Gson().toJson(json));
-            log.debug("Json сохранен в файл по пути {}", VALUTES_PATH);
+            log.debug("Json сохранен в файл по пути {}", path);
         } catch (IOException e) {
             log.info("Не удалось сохранить файл. Ошибка = {}", e.getMessage());
         }
     }
 
-    //FIXME изменить, чтобы в метод приходил путь из сервиса, так как метод можно переиспользовать
-    public JsonObject readJsonFromFile() {
+    public JsonObject readJsonFromFile(String path) {
         JsonObject jsonObject = null;
 
-        if (!Files.exists(Path.of(VALUTES_PATH))) {
-            return jsonObject;
-        }
-
-        try (FileReader reader = new FileReader(VALUTES_PATH)) {
+        try (FileReader reader = new FileReader(path)) {
             jsonObject = gson.fromJson(reader, JsonObject.class);
         } catch (IOException | NullPointerException e) {
             log.info("Не удалось прочитать файл. Ошибка = {}", e.getMessage());
         }
-
-        //TODO перенести метод на уровень выше
-        /*if (!compareDateFromJson(jsonObject)) {
-            return null;
-        }*/
 
         return jsonObject;
     }

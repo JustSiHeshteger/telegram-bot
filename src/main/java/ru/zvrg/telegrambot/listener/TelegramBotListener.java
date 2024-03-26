@@ -1,6 +1,6 @@
 package ru.zvrg.telegrambot.listener;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -10,16 +10,11 @@ import ru.zvrg.telegrambot.service.command.CommandFactory;
 import java.io.IOException;
 
 @Component
+@RequiredArgsConstructor
 public class TelegramBotListener extends TelegramLongPollingBot {
 
     private final Config config;
     private final CommandFactory commandFactory;
-
-    @Autowired
-    public TelegramBotListener(Config config, CommandFactory commandFactory) {
-        this.config = config;
-        this.commandFactory = commandFactory;
-    }
 
     @Override
     public void onUpdateReceived(Update update) {

@@ -7,6 +7,10 @@ public class Constants {
         public static final String VALUTES = "/valutes";
     }
 
+    public static class Urls {
+        public static final String VALUTES_URL = "https://www.cbr-xml-daily.ru/daily_json.js";
+    }
+
     public static class Paths {
         public static final String VALUTES_PATH = "src/main/resources/actual_valutes.json";
     }

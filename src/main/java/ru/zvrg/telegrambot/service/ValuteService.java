@@ -4,35 +4,32 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 import ru.zvrg.telegrambot.dto.Valute;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
+import static ru.zvrg.telegrambot.utils.Utility.compareDateFromJson;
 import static ru.zvrg.telegrambot.utils.constants.Constants.JsonAttributes.VALUTE;
+import static ru.zvrg.telegrambot.utils.constants.Constants.Paths.VALUTES_PATH;
+import static ru.zvrg.telegrambot.utils.constants.Constants.Urls.VALUTES_URL;
 
 @Service
 @RequiredArgsConstructor
-@PropertySource("application.properties")
 public class ValuteService {
-
-    @Value("${valute.url}")
-    private String valuteUrl;
 
     private final WebService webService;
     private final FileHandler fileHandler;
     private final Gson gson;
 
     public List<Valute> getValuteFromCbr() throws IOException {
-        JsonObject jsonObject = Optional.ofNullable(fileHandler.readJsonFromFile()).orElse(
-                gson.fromJson(webService.getJsonFileFromCbr(valuteUrl), JsonObject.class)
-        );
+        JsonObject jsonObject = fileHandler.readJsonFromFile(VALUTES_PATH);
+
+        if (Objects.equals(jsonObject, null) || compareDateFromJson(jsonObject)) {
+            jsonObject = gson.fromJson(webService.getJsonFileFromUrl(VALUTES_URL, VALUTES_PATH), JsonObject.class);
+        }
+
         JsonObject valuteObject = jsonObject.getAsJsonObject(VALUTE);
 
         List<Valute> valuteList = new ArrayList<>();
