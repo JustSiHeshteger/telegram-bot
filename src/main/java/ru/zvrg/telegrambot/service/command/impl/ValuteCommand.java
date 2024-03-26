@@ -26,6 +26,6 @@ public class ValuteCommand implements DefaultCommand {
                 .filter(valute -> valute.getCharCode().equals(usd))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("Не найдено нужной валюты = " + usd));
-        log.info("найденная валюта {}", u);
+        log.info("Найденная валюта {}", u);
     }
 }
