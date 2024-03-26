@@ -19,6 +19,8 @@
             <property name="validateEnhancedForLoopVariable" value="false"/>
         </module>
 
+        <module name="StringLiteralEquality"/>
+
     </module>
 
     <module name="LineLength">
