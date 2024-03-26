@@ -30,14 +30,12 @@ public class ValuteService {
             jsonObject = gson.fromJson(webService.getJsonFileFromUrl(VALUTES_URL, VALUTES_PATH), JsonObject.class);
         }
 
-        JsonObject valuteObject = jsonObject.getAsJsonObject(VALUTE);
-
-        List<Valute> valuteList = new ArrayList<>();
+        final JsonObject valuteObject = jsonObject.getAsJsonObject(VALUTE);
+        final List<Valute> valuteList = new ArrayList<>();
 
         for (Map.Entry<String, JsonElement> entry : valuteObject.entrySet()) {
-            JsonObject valuteJson = entry.getValue().getAsJsonObject();
-
-            Valute valute = gson.fromJson(valuteJson, Valute.class);
+            final JsonObject valuteJson = entry.getValue().getAsJsonObject();
+            final Valute valute = gson.fromJson(valuteJson, Valute.class);
             valuteList.add(valute);
         }
 

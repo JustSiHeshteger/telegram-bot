@@ -11,8 +11,8 @@ import static ru.zvrg.telegrambot.utils.constants.Constants.JsonAttributes.TIMES
 public class Utility {
 
     public static boolean compareDateFromJson(JsonObject jsonObject) {
-        JsonPrimitive jsonDate = jsonObject.getAsJsonPrimitive(TIMESTAMP);
-        OffsetDateTime dateTimeFromJson = OffsetDateTime.parse(jsonDate.getAsString());
+        final JsonPrimitive jsonDate = jsonObject.getAsJsonPrimitive(TIMESTAMP);
+        final OffsetDateTime dateTimeFromJson = OffsetDateTime.parse(jsonDate.getAsString());
         return !LocalDate.now().equals(dateTimeFromJson.toLocalDate());
     }
 }

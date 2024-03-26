@@ -21,7 +21,7 @@ public class WebService {
 
     public JsonObject getJsonFileFromUrl(String jsonUrl, String path) throws IOException {
         final URL url = new URL(jsonUrl);
-        StringBuilder jsonContent = new StringBuilder();
+        final StringBuilder jsonContent = new StringBuilder();
 
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()))) {
             String line;
@@ -32,7 +32,7 @@ public class WebService {
             log.info("Произошла ошибка {}", ignored.getMessage());
         }
 
-        JsonObject jsonObject = gson.fromJson(jsonContent.toString(), JsonObject.class);
+        final JsonObject jsonObject = gson.fromJson(jsonContent.toString(), JsonObject.class);
         fileHandler.saveJsonToFile(jsonObject, path);
 
         return jsonObject;
