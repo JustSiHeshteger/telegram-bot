@@ -19,10 +19,10 @@ public class ValuteCommand implements DefaultCommand {
 
     @Override
     public void executeCommand(Update update, TelegramBotListener telegramBotListener) throws IOException {
-        var list = valuteService.getValuteFromCbr();
+        final var list = valuteService.getValuteFromCbr();
         //FIXME убрать потом
-        String usd = "USD";
-        var u = list.stream()
+        final String usd = "USD";
+        final var u = list.stream()
                 .filter(valute -> valute.getCharCode().equals(usd))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("Не найдено нужной валюты = " + usd));

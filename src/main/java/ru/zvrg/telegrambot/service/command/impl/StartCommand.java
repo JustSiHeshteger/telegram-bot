@@ -20,8 +20,8 @@ public class StartCommand implements DefaultCommand {
     }
 
     private SendMessage getAnswer(Update update) {
-        String answer = "Hell0, " + update.getMessage().getChat().getUserName();
-        SendMessage message = new SendMessage();
+        final String answer = "Hell0, " + update.getMessage().getChat().getUserName();
+        final SendMessage message = new SendMessage();
         message.setChatId(String.valueOf(update.getMessage().getChatId()));
         message.setText(answer);
         return message;
