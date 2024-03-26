@@ -25,7 +25,7 @@ public class Initializer {
     public void init() {
         try {
             log.info("Начало создание бота {}", listener);
-            TelegramBotsApi botsApi = new TelegramBotsApi(DefaultBotSession.class);
+            final TelegramBotsApi botsApi = new TelegramBotsApi(DefaultBotSession.class);
             botsApi.registerBot(listener);
         } catch (TelegramApiException e) {
             e.printStackTrace();

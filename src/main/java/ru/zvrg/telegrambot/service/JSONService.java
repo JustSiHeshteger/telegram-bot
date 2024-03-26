@@ -12,8 +12,8 @@ public class JSONService {
 
     public String getJSONFile(String link) throws IOException {
         final URL url = new URL(link);
-        BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()));
-        StringBuilder jsonContent = new StringBuilder();
+        final BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()));
+        final StringBuilder jsonContent = new StringBuilder();
 
         String line;
         while ((line = reader.readLine()) != null) {

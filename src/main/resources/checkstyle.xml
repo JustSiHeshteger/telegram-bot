@@ -11,6 +11,14 @@
 
         <module name="WhitespaceAfter"/>
 
+        <module name="UnusedImports"/>
+
+        <module name="DefaultComesLast"/>
+
+        <module name="FinalLocalVariable">
+            <property name="validateEnhancedForLoopVariable" value="false"/>
+        </module>
+
     </module>
 
     <module name="LineLength">

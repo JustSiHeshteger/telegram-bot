@@ -24,7 +24,7 @@ public class TelegramBotListener extends TelegramLongPollingBot {
     @Override
     public void onUpdateReceived(Update update) {
         if (update.hasMessage() && update.getMessage().hasText()) {
-            String messageText = update.getMessage().getText();
+            final String messageText = update.getMessage().getText();
 
             try {
                 commandFactory.getCommand(messageText).executeCommand(update, this);

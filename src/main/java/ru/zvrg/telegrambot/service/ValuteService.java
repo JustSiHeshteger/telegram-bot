@@ -27,16 +27,15 @@ public class ValuteService {
     }
 
     public List<Valute> getValuteFromCbr() throws IOException {
-        Gson gson = new Gson();
-        JsonObject jsonObject = gson.fromJson(jsonService.getJSONFile(valuteUrl), JsonObject.class);
-        JsonObject valuteObject = jsonObject.getAsJsonObject("Valute");
+        final Gson gson = new Gson();
+        final JsonObject jsonObject = gson.fromJson(jsonService.getJSONFile(valuteUrl), JsonObject.class);
+        final JsonObject valuteObject = jsonObject.getAsJsonObject("Valute");
 
-        List<Valute> valuteList = new ArrayList<>();
+        final List<Valute> valuteList = new ArrayList<>();
 
         for (Map.Entry<String, JsonElement> entry : valuteObject.entrySet()) {
-            JsonObject valuteJson = entry.getValue().getAsJsonObject();
-
-            Valute valute = gson.fromJson(valuteJson, Valute.class);
+            final JsonObject valuteJson = entry.getValue().getAsJsonObject();
+            final Valute valute = gson.fromJson(valuteJson, Valute.class);
             valuteList.add(valute);
         }
 
