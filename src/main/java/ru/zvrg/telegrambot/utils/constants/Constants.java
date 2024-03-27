@@ -6,7 +6,6 @@ public class Constants {
         public static final String START = "/start";
         public static final String START_DESCRIPTION = "Начало диалога с ботом";
         public static final String VALUTES = "/valutes";
-
         public static final String VALUTES_DESCRIPTION = "Вывести значение валют";
     }
 
