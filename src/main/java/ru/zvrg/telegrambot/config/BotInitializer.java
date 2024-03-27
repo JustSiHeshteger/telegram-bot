@@ -13,7 +13,7 @@ import ru.zvrg.telegrambot.listener.TelegramBotListener;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class Initializer {
+public class BotInitializer {
 
     private final TelegramBotListener listener;
 
