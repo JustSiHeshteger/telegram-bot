@@ -9,8 +9,6 @@ import ru.zvrg.telegrambot.config.Config;
 import ru.zvrg.telegrambot.mapper.ContextMapper;
 import ru.zvrg.telegrambot.service.command.CommandFactory;
 
-import java.io.IOException;
-
 @Slf4j
 @Component
 @RequiredArgsConstructor
@@ -26,8 +24,8 @@ public class TelegramBotListener extends TelegramLongPollingBot {
             final var context = mapper.mapContext(update);
 
             try {
-                commandFactory.getCommand(context.getCommand()).executeCommand(context, this);
-            } catch (IOException e) {
+                this.execute(commandFactory.getCommand(context.getCommand()).executeCommand(context));
+            } catch (Exception e) {
                 log.error("Произошла ошибка {}", e.getMessage());
             }
         }

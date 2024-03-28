@@ -14,7 +14,7 @@ public class Constants {
     }
 
     public static class Paths {
-        public static final String VALUTES_PATH = "src/main/resources/actual_valutes.json";
+        public static final String VALUTES_PATH = "src/main/resources/json/actual_valutes.json";
     }
 
     public static class JsonAttributes {
