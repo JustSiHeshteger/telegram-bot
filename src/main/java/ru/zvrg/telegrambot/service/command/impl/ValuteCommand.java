@@ -1,11 +1,12 @@
 package ru.zvrg.telegrambot.service.command.impl;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+import ru.zvrg.telegrambot.dto.Context;
 import ru.zvrg.telegrambot.dto.Valute;
 import ru.zvrg.telegrambot.listener.TelegramBotListener;
 import ru.zvrg.telegrambot.service.ValuteService;
@@ -15,18 +16,18 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 
-@Component
-@AllArgsConstructor
 @Slf4j
+@Component
+@RequiredArgsConstructor
 public class ValuteCommand implements DefaultCommand {
 
-    private ValuteService valuteService;
+    private final ValuteService valuteService;
 
     @Override
-    public void executeCommand(Update update, TelegramBotListener telegramBotListener) throws IOException {
+    public void executeCommand(Context context, TelegramBotListener telegramBotListener) throws IOException {
         final var list = valuteService.getValuteFromCbr();
         try {
-            telegramBotListener.execute(getAnswer(update, list, "USD"));
+            telegramBotListener.execute(getAnswer(context.getUpdate(), list, "USD"));
         } catch (TelegramApiException e) {
             throw new RuntimeException(e);
         }
