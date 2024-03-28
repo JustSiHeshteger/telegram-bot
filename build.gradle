@@ -2,6 +2,7 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.2.4'
 	id 'io.spring.dependency-management' version '1.1.4'
+	id 'checkstyle'
 }
 
 group = 'ru.zvrg'
@@ -9,6 +10,25 @@ version = getVersion()
 
 java {
 	sourceCompatibility = '17'
+}
+
+sourceSets {
+	main {
+		java {
+			srcDirs = ['src/main/java']
+		}
+		resources {
+			srcDirs = ['src/main/resources', 'src/main/liquibase']
+		}
+	}
+	test {
+		java {
+			srcDirs = ['src/test/java']
+		}
+		resources {
+			srcDirs = ['src/test/resources']
+		}
+	}
 }
 
 configurations {
@@ -29,10 +49,16 @@ dependencies {
 
 	implementation "org.telegram:telegrambots:${TELEGRAMBOTS_VERSION}"
 	implementation "com.google.code.gson:gson:${GSON_VERSION}"
+	implementation "com.puppycrawl.tools:checkstyle:${CHECKSTYLE}"
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+checkstyle {
+	configFile = file("src/main/resources/checkstyle.xml")
+	showViolations = true
 }
 
 def getVersion() {

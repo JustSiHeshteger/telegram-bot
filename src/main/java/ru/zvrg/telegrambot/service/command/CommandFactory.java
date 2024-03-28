@@ -9,8 +9,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-import static ru.zvrg.telegrambot.utils.constants.Constants.START;
-import static ru.zvrg.telegrambot.utils.constants.Constants.VALUTE;
+import static ru.zvrg.telegrambot.utils.constants.Constants.Commands.START;
+import static ru.zvrg.telegrambot.utils.constants.Constants.Commands.VALUTES;
 
 @Service
 public class CommandFactory {
@@ -19,7 +19,7 @@ public class CommandFactory {
     @Autowired
     public CommandFactory(StartCommand startCommand, ValuteCommand valuteCommand) {
         commands.put(START, startCommand);
-        commands.put(VALUTE, valuteCommand);
+        commands.put(VALUTES, valuteCommand);
     }
 
     public DefaultCommand getCommand(String commandName) {
