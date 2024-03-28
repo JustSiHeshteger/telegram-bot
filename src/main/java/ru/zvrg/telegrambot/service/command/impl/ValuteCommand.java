@@ -38,8 +38,8 @@ public class ValuteCommand implements DefaultCommand {
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("Не найдено нужной валюты = " + currentValute));
         log.info("найденная валюта {}", u);
-        String answer = LocalDate.now() + " - " + u.getCharCode() + "\n" + u.getValue() + " " +
-                        u.getNominal() + " - " + u.getCharCode()+ " RUB";
+        String answer = LocalDate.now() + ": " + "\n" + u.getValue() + " " + u.getCharCode() +
+                         " - " + u.getNominal() + " RUB";
         //update.getMessage().getChat().getUserName();
         SendMessage message = new SendMessage();
         message.setChatId(String.valueOf(update.getMessage().getChatId()));
