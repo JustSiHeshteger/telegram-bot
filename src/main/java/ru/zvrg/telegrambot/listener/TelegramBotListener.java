@@ -1,6 +1,5 @@
 package ru.zvrg.telegrambot.listener;
 
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
@@ -11,12 +10,18 @@ import ru.zvrg.telegrambot.service.command.CommandFactory;
 
 @Slf4j
 @Component
-@RequiredArgsConstructor
 public class TelegramBotListener extends TelegramLongPollingBot {
 
     private final Config config;
     private final CommandFactory commandFactory;
     private final ContextMapper mapper;
+
+    public TelegramBotListener(Config config, CommandFactory commandFactory, ContextMapper mapper) {
+        super(config.getBotToken());
+        this.config = config;
+        this.commandFactory = commandFactory;
+        this.mapper = mapper;
+    }
 
     @Override
     public void onUpdateReceived(Update update) {
@@ -34,10 +39,5 @@ public class TelegramBotListener extends TelegramLongPollingBot {
     @Override
     public String getBotUsername() {
         return config.getBotName();
-    }
-
-    @Override
-    public String getBotToken() {
-        return config.getBotToken();
     }
 }

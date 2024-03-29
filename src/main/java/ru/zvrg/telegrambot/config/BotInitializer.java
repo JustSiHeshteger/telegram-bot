@@ -19,12 +19,12 @@ public class BotInitializer {
 
     @EventListener({ContextRefreshedEvent.class})
     public void init() {
+        log.info("Запуск бота {}", listener.getBotUsername());
         try {
-            log.info("Запуск бота {}", listener.getBotUsername());
             final TelegramBotsApi botsApi = new TelegramBotsApi(DefaultBotSession.class);
             botsApi.registerBot(listener);
         } catch (TelegramApiException e) {
-            e.printStackTrace();
+            log.error("Произошла ошибка: {}", e.getMessage());
         }
     }
 }
