@@ -5,6 +5,6 @@ import ru.zvrg.telegrambot.dto.Context;
 
 import java.io.IOException;
 
-public interface DefaultCommand<Method extends BotApiMethodMessage> {
-    Method executeCommand(Context context) throws IOException;
+public interface DefaultCommand<Message extends BotApiMethodMessage> {
+    Message executeCommand(Context context) throws IOException;
 }
