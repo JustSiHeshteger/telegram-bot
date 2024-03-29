@@ -8,6 +8,7 @@ import static ru.zvrg.telegrambot.utils.Utility.getCommandFromUpdate;
 
 @Component
 public class ContextMapper {
+
     public Context mapContext(Update update) {
         final Context context = new Context(update);
         context.setCommand(getCommandFromUpdate(update.getMessage().getText()).orElse(null));
