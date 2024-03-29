@@ -23,6 +23,7 @@ public class ValuteCommand implements DefaultCommand<SendMessage> {
 
     @Override
     public SendMessage executeCommand(Context context) throws IOException {
+        log.info("Выполнение команды /valutes для chatId = {}", context.getUpdate().getMessage().getChatId());
         final var list = valuteService.getValuteFromCbr();
         return getAnswer(context.getUpdate(), list, "USD");
 
