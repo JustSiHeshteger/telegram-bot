@@ -22,13 +22,11 @@ public class ValuteCommand implements DefaultCommand<SendMessage> {
 
     private final ValuteService valuteService;
 
-
     @Override
     public SendMessage executeCommand(Context context) throws IOException {
         log.info("Выполнение команды /valutes для chatId = {}", context.getUpdate().getMessage().getChatId());
 
         return getAnswer(context);
-
     }
 
     private SendMessage getAnswer(Context context) throws IOException {
