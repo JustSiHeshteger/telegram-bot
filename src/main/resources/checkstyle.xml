@@ -9,7 +9,7 @@
             <property name="max" value="40"/>
         </module>
 
-        <module name="WhitespaceAfter"/>
+        <module name="WhitespaceAround"/>
 
         <module name="UnusedImports"/>
 
@@ -20,6 +20,10 @@
         </module>
 
         <module name="StringLiteralEquality"/>
+
+        <module name="EmptyLineSeparator">
+            <property name="tokens" value="METHOD_DEF"/>
+        </module>
 
     </module>
 
