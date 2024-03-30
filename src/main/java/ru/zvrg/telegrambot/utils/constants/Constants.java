@@ -1,5 +1,7 @@
 package ru.zvrg.telegrambot.utils.constants;
 
+import java.util.List;
+
 public class Constants {
 
     public static class Commands {
@@ -20,5 +22,9 @@ public class Constants {
     public static class JsonAttributes {
         public static final String TIMESTAMP = "Timestamp";
         public static final String VALUTE = "Valute";
+    }
+
+    public static class DefaultValutes {
+        public static final List<String> MOST_POPULAR_VALUTES = List.of("USD", "EUR");
     }
 }

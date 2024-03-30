@@ -27,7 +27,6 @@ public class TelegramBotListener extends TelegramLongPollingBot {
     public void onUpdateReceived(Update update) {
         if (update.hasMessage() && update.getMessage().hasText()) {
             final var context = mapper.mapContext(update);
-
             try {
                 this.execute(commandFactory.getCommand(context.getCommand()).executeCommand(context));
             } catch (Exception e) {
