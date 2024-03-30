@@ -5,8 +5,6 @@ import com.google.gson.JsonPrimitive;
 
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
-import java.util.Arrays;
-import java.util.Optional;
 
 import static ru.zvrg.telegrambot.utils.constants.Constants.JsonAttributes.TIMESTAMP;
 
@@ -18,8 +16,4 @@ public class Utility {
         return !LocalDate.now().equals(dateTimeFromJson.toLocalDate());
     }
 
-    public static Optional<String> getCommandFromUpdate(String text) {
-        return Arrays.stream(text.split(" "))
-                .findFirst();
-    }
 }

@@ -44,7 +44,7 @@ public final class FileHandler {
 
     private void openOrCreateDirectory() {
         try {
-            final Path resourcesPath = Paths.get("src", "main", "resources");
+            final Path resourcesPath = Paths.get("src", "main", "resources", "json");
             if (!Files.exists(resourcesPath)) {
                 Files.createDirectories(resourcesPath);
             }
