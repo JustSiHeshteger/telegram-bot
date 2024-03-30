@@ -46,6 +46,8 @@ dependencies {
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	developmentOnly 'org.springframework.boot:spring-boot-docker-compose'
+	runtimeOnly 'org.postgresql:postgresql'
 
 	implementation "org.telegram:telegrambots:${TELEGRAMBOTS_VERSION}"
 	implementation "com.google.code.gson:gson:${GSON_VERSION}"

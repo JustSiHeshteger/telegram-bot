@@ -1,22 +1,20 @@
 package ru.zvrg.telegrambot.service.command.impl;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
-import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-import ru.zvrg.telegrambot.listener.TelegramBotListener;
+import ru.zvrg.telegrambot.dto.Context;
 import ru.zvrg.telegrambot.service.command.DefaultCommand;
 
+@Slf4j
 @Component
-public class StartCommand implements DefaultCommand {
+public class StartCommand implements DefaultCommand<SendMessage> {
 
     @Override
-    public void executeCommand(Update update, TelegramBotListener telegramBotListener) {
-        try {
-            telegramBotListener.execute(getAnswer(update));
-        } catch (TelegramApiException e) {
-            throw new RuntimeException(e);
-        }
+    public SendMessage executeCommand(Context context) {
+        log.info("Выполнение команды /start для chatId = {}", context.getUpdate().getMessage().getChatId());
+        return getAnswer(context.getUpdate());
     }
 
     private SendMessage getAnswer(Update update) {
