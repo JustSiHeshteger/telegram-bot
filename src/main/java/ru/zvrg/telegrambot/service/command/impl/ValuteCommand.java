@@ -26,24 +26,28 @@ public class ValuteCommand implements DefaultCommand {
     public void executeCommand(Update update, TelegramBotListener telegramBotListener) throws IOException {
         final var list = valuteService.getValuteFromCbr();
         try {
-            telegramBotListener.execute(getAnswer(update, list, "USD"));
+            telegramBotListener.execute(getAnswer(update, list));
         } catch (TelegramApiException e) {
             throw new RuntimeException(e);
         }
     }
 
-    private SendMessage getAnswer(Update update, List<Valute> list, String currentValute) {
-        final var u = list.stream()
-                .filter(valute -> valute.getCharCode().equals(currentValute))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("Не найдено нужной валюты = " + currentValute));
-        log.info("найденная валюта {}", u);
-        final String answer = LocalDate.now() + ": " + "\n" + u.getValue() + " " + u.getCharCode() +
-                         " - " + u.getNominal() + " RUB";
+    private SendMessage getAnswer(Update update, List<Valute> list) {
+        final var params = update.getMessage().getText().split(" ");
+        final StringBuilder answer = new StringBuilder();
+        for (var currentValute: params){
+            final var u = list.stream()
+                    .filter(valute -> valute.getCharCode().equals(currentValute))
+                    .findFirst()
+                    .orElseThrow(() -> new IllegalArgumentException("Не найдено нужной валюты = " + currentValute));
+            log.info("найденная валюта {}", u);
+            answer.append(LocalDate.now()).append(": ").append("\n").append(u.getValue()).append(" ").append(u.getCharCode()).append(" - ").append(u.getNominal()).append(" RUB\n");
+        }
+
         //update.getMessage().getChat().getUserName();
         final SendMessage message = new SendMessage();
         message.setChatId(String.valueOf(update.getMessage().getChatId()));
-        message.setText(answer);
+        message.setText(answer.toString());
         return message;
     }
 }
