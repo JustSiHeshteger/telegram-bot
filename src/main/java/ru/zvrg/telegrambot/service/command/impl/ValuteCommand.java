@@ -46,20 +46,18 @@ public class ValuteCommand implements DefaultCommand<SendMessage> {
     private SendMessage createMessage(Context context, List<Valute> selectedValutes) {
         final StringBuilder answer = new StringBuilder();
 
-        //TODO - переписать на stream
+
         answer.append(LocalDate.now()).append(": ");
         for (var currValute: selectedValutes) {
             answer.append("\n").append(currValute.getNominal()).append(" ₽").append(" - ").
                     append(currValute.getValue()).append(" ").append(currValute.getCharCode());
-
-            if (currValute.getPrevious() < currValute.getValue()) {
+            final double valueDifference = currValute.getValue() - currValute.getPrevious();
+            if (valueDifference > 0) {
                 answer.append(" ⬆").append(
-                        String.format("%.3f", currValute.getValue() - currValute.getPrevious()));
-            } else if (currValute.getPrevious() > currValute.getValue()) {
-                answer.append(" ⬇").append(
-                        String.format("%.3f", currValute.getPrevious() - currValute.getValue()));
+                        String.format("%.3f", valueDifference));
             } else {
-                answer.append(" ➡");
+                answer.append(" ⬇").append(
+                        String.format("%.3f", Math.abs(valueDifference)));
             }
         }
 
