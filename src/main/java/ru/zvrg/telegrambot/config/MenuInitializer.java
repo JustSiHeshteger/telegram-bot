@@ -24,9 +24,11 @@ public class MenuInitializer {
 
     @PostConstruct
     private void initializeCommandsMenu() {
+        //FIXME сделать так, чтоьы автоматически заполнялись все команды из CommandFactory
         final List<BotCommand> commands = new ArrayList<>();
         commands.add(new BotCommand(START, START_DESCRIPTION));
         commands.add(new BotCommand(VALUTES, VALUTES_DESCRIPTION));
+        commands.add(new BotCommand(KAFKA, KAFKA_DESCRIPTION));
 
         try {
             botListener.execute(new SetMyCommands(commands, new BotCommandScopeDefault(), null));

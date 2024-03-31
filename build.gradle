@@ -18,7 +18,7 @@ sourceSets {
 			srcDirs = ['src/main/java']
 		}
 		resources {
-			srcDirs = ['src/main/resources', 'src/main/liquibase']
+			srcDirs = ['src/main/resources']
 		}
 	}
 	test {
@@ -42,12 +42,14 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter'
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	developmentOnly 'org.springframework.boot:spring-boot-docker-compose'
 	runtimeOnly 'org.postgresql:postgresql'
+
+	implementation 'org.springframework.boot:spring-boot-starter'
+	implementation 'org.springframework.kafka:spring-kafka'
 
 	implementation "org.telegram:telegrambots:${TELEGRAMBOTS_VERSION}"
 	implementation "com.google.code.gson:gson:${GSON_VERSION}"
