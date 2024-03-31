@@ -51,7 +51,7 @@ dependencies {
 
 	implementation "org.telegram:telegrambots:${TELEGRAMBOTS_VERSION}"
 	implementation "com.google.code.gson:gson:${GSON_VERSION}"
-	implementation "com.puppycrawl.tools:checkstyle:${CHECKSTYLE}"
+	implementation "com.puppycrawl.tools:checkstyle:${CHECKSTYLE_VERSION}"
 }
 
 tasks.named('test') {
