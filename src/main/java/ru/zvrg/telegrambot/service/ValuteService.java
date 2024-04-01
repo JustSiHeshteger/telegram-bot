@@ -5,7 +5,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.zvrg.telegrambot.dto.Valute;
+import ru.zvrg.telegrambot.common.Valute;
 
 import java.io.IOException;
 import java.util.*;

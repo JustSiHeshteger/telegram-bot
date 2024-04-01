@@ -2,7 +2,7 @@ package ru.zvrg.telegrambot.mapper;
 
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Update;
-import ru.zvrg.telegrambot.dto.Context;
+import ru.zvrg.telegrambot.common.Context;
 
 import java.util.Arrays;
 import java.util.List;

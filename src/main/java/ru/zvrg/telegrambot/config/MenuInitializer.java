@@ -8,7 +8,7 @@ import org.telegram.telegrambots.meta.api.methods.commands.SetMyCommands;
 import org.telegram.telegrambots.meta.api.objects.commands.BotCommand;
 import org.telegram.telegrambots.meta.api.objects.commands.scope.BotCommandScopeDefault;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-import ru.zvrg.telegrambot.listener.TelegramBotListener;
+import ru.zvrg.telegrambot.listener.telegram.TelegramBotListener;
 
 import java.util.ArrayList;
 import java.util.List;

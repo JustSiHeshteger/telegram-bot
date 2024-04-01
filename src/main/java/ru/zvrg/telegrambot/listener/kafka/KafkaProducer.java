@@ -1,27 +1,21 @@
 package ru.zvrg.telegrambot.listener.kafka;
 
-import com.google.gson.Gson;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.core.KafkaTemplate;
-import org.springframework.stereotype.Component;
-import ru.zvrg.telegrambot.dto.Valute;
+import org.springframework.stereotype.Service;
 
-import java.util.List;
-
-import static ru.zvrg.telegrambot.utils.constants.Constants.KafkaSettings.TOPIC_NAME;
+import static ru.zvrg.telegrambot.utils.constants.Constants.KafkaSettings.REQUEST_TOPIC_NAME;
 
 @Slf4j
-@Component
+@Service
 @AllArgsConstructor
 public class KafkaProducer {
 
-    private KafkaTemplate<String, Object> kafkaTemplate;
-    private final Gson gson;
+    private final KafkaTemplate<String, String> kafkaTemplate;
 
-    public void sendMessage(List<Valute> valutes) {
+    public void sendMessage(String message) {
         log.info("Метод sendMessage - попытка отправить сообщение в кафку");
-        final String json = gson.toJson(valutes);
-        kafkaTemplate.send(TOPIC_NAME, json);
+        kafkaTemplate.send(REQUEST_TOPIC_NAME, message);
     }
 }

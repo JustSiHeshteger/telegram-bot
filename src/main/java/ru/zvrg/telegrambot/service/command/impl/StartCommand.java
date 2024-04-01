@@ -4,7 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
-import ru.zvrg.telegrambot.dto.Context;
+import ru.zvrg.telegrambot.common.Context;
 import ru.zvrg.telegrambot.service.command.DefaultCommand;
 
 @Slf4j

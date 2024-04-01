@@ -1,4 +1,4 @@
-package ru.zvrg.telegrambot.dto;
+package ru.zvrg.telegrambot.common;
 
 import lombok.Data;
 
