@@ -10,8 +10,8 @@ import ru.zvrg.telegrambot.service.ValuteService;
 import ru.zvrg.telegrambot.service.command.DefaultCommand;
 
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static ru.zvrg.telegrambot.utils.constants.Constants.DefaultValutes.MOST_POPULAR_VALUTES;
 
@@ -25,7 +25,6 @@ public class ValuteCommand implements DefaultCommand<SendMessage> {
     @Override
     public SendMessage executeCommand(Context context) throws IOException {
         log.info("Выполнение команды /valutes для chatId = {}", context.getUpdate().getMessage().getChatId());
-
         return getAnswer(context);
     }
 
@@ -44,27 +43,21 @@ public class ValuteCommand implements DefaultCommand<SendMessage> {
     }
 
     private SendMessage createMessage(Context context, List<Valute> selectedValutes) {
-        final StringBuilder answer = new StringBuilder();
-
-
-        answer.append(LocalDate.now()).append(": ");
-        for (var currValute: selectedValutes) {
-            answer.append("\n").append(currValute.getNominal()).append(" ₽").append(" - ").
-                    append(currValute.getValue()).append(" ").append(currValute.getCharCode());
-            final double valueDifference = currValute.getValue() - currValute.getPrevious();
-            if (valueDifference > 0) {
-                answer.append(" ⬆").append(
-                        String.format("%.3f", valueDifference));
-            } else {
-                answer.append(" ⬇").append(
-                        String.format("%.3f", Math.abs(valueDifference)));
-            }
-        }
+        final String answer = selectedValutes.stream()
+                .map(this::generateAnswer)
+                .collect(Collectors.joining(System.lineSeparator()));
 
         final SendMessage message = new SendMessage();
         message.setChatId(String.valueOf(context.getUpdate().getMessage().getChatId()));
-        message.setText(answer.toString());
+        message.setText(answer);
         return message;
     }
 
+    private String generateAnswer(Valute valute) {
+        final double valueDifference = valute.getValue() - valute.getPrevious();
+        final String differenceSymbol = valueDifference > 0 ? " ⬆" : " ⬇";
+
+        return String.format("%d ₽ - %.3f %s%s%.3f", valute.getNominal(), valute.getValue(),
+                valute.getCharCode(), differenceSymbol, Math.abs(valueDifference));
+    }
 }
