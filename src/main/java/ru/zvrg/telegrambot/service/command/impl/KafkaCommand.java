@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import ru.zvrg.telegrambot.common.Context;
+import ru.zvrg.telegrambot.dto.kafka.Message;
 import ru.zvrg.telegrambot.listener.kafka.KafkaProducer;
 import ru.zvrg.telegrambot.service.command.DefaultCommand;
 
@@ -20,7 +21,7 @@ public class KafkaCommand implements DefaultCommand<SendMessage> {
         log.info("Выполнение команды /kafka для chatId = {}", context.getUpdate().getMessage().getChatId());
 
         log.info("отправка сообщения в kafka");
-        kafkaProducer.sendMessage("ОТПРАВЛЕННОЕ СООБЩЕНИЕ");
+        kafkaProducer.sendMessage(new Message());
 
         final SendMessage message = new SendMessage();
         message.setChatId(String.valueOf(context.getUpdate().getMessage().getChatId()));

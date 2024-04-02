@@ -1,11 +1,10 @@
-package ru.zvrg.telegrambot.dto.kafka.impl;
+package ru.zvrg.telegrambot.dto.kafka;
 
 import lombok.Data;
 import org.telegram.telegrambots.meta.api.objects.Update;
-import ru.zvrg.telegrambot.dto.kafka.DefaultMessage;
 
 @Data
-public class Message implements DefaultMessage {
+public class Message {
 
     //FIXME возможно в будущем изменить на Context
     /**
