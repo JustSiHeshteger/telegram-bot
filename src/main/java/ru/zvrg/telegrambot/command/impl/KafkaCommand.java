@@ -1,13 +1,13 @@
-package ru.zvrg.telegrambot.service.command.impl;
+package ru.zvrg.telegrambot.command.impl;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import ru.zvrg.telegrambot.command.DefaultCommand;
 import ru.zvrg.telegrambot.common.Context;
 import ru.zvrg.telegrambot.dto.kafka.Message;
 import ru.zvrg.telegrambot.listener.kafka.KafkaProducer;
-import ru.zvrg.telegrambot.service.command.DefaultCommand;
 
 @Slf4j
 @Component

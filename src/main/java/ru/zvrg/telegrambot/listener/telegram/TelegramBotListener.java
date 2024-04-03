@@ -6,7 +6,7 @@ import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import ru.zvrg.telegrambot.config.Config;
 import ru.zvrg.telegrambot.mapper.ContextMapper;
-import ru.zvrg.telegrambot.service.command.CommandFactory;
+import ru.zvrg.telegrambot.command.CommandFactory;
 
 @Slf4j
 @Component

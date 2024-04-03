@@ -1,13 +1,13 @@
-package ru.zvrg.telegrambot.service.command.impl;
+package ru.zvrg.telegrambot.command.impl;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import ru.zvrg.telegrambot.command.DefaultCommand;
 import ru.zvrg.telegrambot.common.Context;
 import ru.zvrg.telegrambot.common.Valute;
 import ru.zvrg.telegrambot.service.ValuteService;
-import ru.zvrg.telegrambot.service.command.DefaultCommand;
 
 import java.io.IOException;
 import java.time.LocalDate;

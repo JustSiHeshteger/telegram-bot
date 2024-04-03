@@ -23,7 +23,7 @@ public final class FileHandler {
     public void saveJsonToFile(JsonObject json, String path) {
         try (FileWriter writer = new FileWriter(path)) {
             openOrCreateDirectory();
-            writer.write(new Gson().toJson(json));
+            writer.write(gson.toJson(json));
             log.debug("Json сохранен в файл по пути {}", path);
         } catch (IOException e) {
             log.info("Не удалось сохранить файл. Ошибка = {}", e.getMessage());

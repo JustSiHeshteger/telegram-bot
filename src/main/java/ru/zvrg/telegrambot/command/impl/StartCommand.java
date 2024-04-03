@@ -1,11 +1,11 @@
-package ru.zvrg.telegrambot.service.command.impl;
+package ru.zvrg.telegrambot.command.impl;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import ru.zvrg.telegrambot.common.Context;
-import ru.zvrg.telegrambot.service.command.DefaultCommand;
+import ru.zvrg.telegrambot.command.DefaultCommand;
 
 @Slf4j
 @Component

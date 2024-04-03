@@ -1,10 +1,10 @@
-package ru.zvrg.telegrambot.service.command;
+package ru.zvrg.telegrambot.command;
 
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.methods.botapimethods.BotApiMethodMessage;
-import ru.zvrg.telegrambot.service.command.impl.KafkaCommand;
-import ru.zvrg.telegrambot.service.command.impl.StartCommand;
-import ru.zvrg.telegrambot.service.command.impl.ValuteCommand;
+import ru.zvrg.telegrambot.command.impl.StartCommand;
+import ru.zvrg.telegrambot.command.impl.KafkaCommand;
+import ru.zvrg.telegrambot.command.impl.ValuteCommand;
 
 import java.util.HashMap;
 import java.util.Map;
