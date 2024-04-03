@@ -1,4 +1,4 @@
-package ru.zvrg.telegrambot.listener;
+package ru.zvrg.telegrambot.listener.telegram;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -6,7 +6,7 @@ import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import ru.zvrg.telegrambot.config.Config;
 import ru.zvrg.telegrambot.mapper.ContextMapper;
-import ru.zvrg.telegrambot.service.command.CommandFactory;
+import ru.zvrg.telegrambot.command.CommandFactory;
 
 @Slf4j
 @Component
