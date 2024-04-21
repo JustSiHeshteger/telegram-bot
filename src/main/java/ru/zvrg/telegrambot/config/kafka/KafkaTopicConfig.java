@@ -15,6 +15,5 @@ public class KafkaTopicConfig {
         return TopicBuilder
                 .name(REQUEST_TOPIC_NAME)
                 .build();
-
     }
 }

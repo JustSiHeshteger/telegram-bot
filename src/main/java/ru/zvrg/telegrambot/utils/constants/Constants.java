@@ -1,5 +1,6 @@
 package ru.zvrg.telegrambot.utils.constants;
 
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 public class Constants {
@@ -33,7 +34,16 @@ public class Constants {
     public static class KafkaSettings {
         public static final String REQUEST_TOPIC_NAME = "request-topic";
         public static final String RESPONSE_TOPIC_NAME = "response-topic";
-        public static final String BOOSTRAP_SERVER = "localhost:9092";
+        public static final String BOOTSTRAP_SERVER = "localhost:9092";
         public static final String GROUP_ID = "my-group";
+    }
+
+    public static class GsonConstants {
+        public static final String TYPE_TOKEN = "typeToken";
+    }
+
+    public static class EncodingConstants {
+        public static final String ENCODING_UTF_8 = StandardCharsets.UTF_8.name();
+        public static final String GSON = "gson";
     }
 }

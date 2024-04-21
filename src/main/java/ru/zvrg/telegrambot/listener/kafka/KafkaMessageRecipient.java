@@ -13,7 +13,7 @@ import static ru.zvrg.telegrambot.utils.constants.Constants.KafkaSettings.RESPON
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class KafkaConsumer {
+public class KafkaMessageRecipient {
 
     private final Gson gson;
 
